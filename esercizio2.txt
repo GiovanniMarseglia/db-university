@@ -47,14 +47,6 @@ SELECT DISTINCT `teachers`.`id`, `teachers`.`name`,`teachers`.`surname`,`departm
  filtrare i tentativi con voto minimo 18.
 
 
-SELECT COUNT(*) AS 'provato',`students`.`name`,`students`.`surname`,`courses`.`name`,`exams`.`course_id`
-FROM `exam_student` JOIN `students` ON `students`.`id`=`exam_student`.`student_id` JOIN `exams` ON `exams`.`id`=`exam_student`.`exam_id` JOIN `courses` 
-ON `courses`.`id`=`exams`.`course_id`
-GROUP BY `student_id`,`exams`.`course_id`
-
-
-con il filtro dei tentativi
-
-SELECT COUNT(*) AS 'tentativi',`students`.`name`,`students`.`surname`,`courses`.`name` AS 'nome esame',`exams`.`course_id`,MAX(`exam_student`.`vote`) AS 'massimo voto' FROM `exam_student` JOIN `students` ON `students`.`id`=`exam_student`.`student_id` JOIN `exams` ON `exams`.`id`=`exam_student`.`exam_id` JOIN `courses` ON `courses`.`id`=`exams`.`course_id` WHERE `exam_student`.`vote`<18 GROUP BY `student_id`,`exams`.`course_id`;
+SELECT COUNT(*) AS 'tentativi',`students`.`name`,`students`.`surname`,`courses`.`name` AS 'nome esame',`exams`.`course_id`,MAX(`exam_student`.`vote`) AS 'massimo voto' FROM `exam_student` JOIN `students` ON `students`.`id`=`exam_student`.`student_id` JOIN `exams` ON `exams`.`id`=`exam_student`.`exam_id` JOIN `courses` ON `courses`.`id`=`exams`.`course_id` WHERE `exam_student`.`vote`>=18 GROUP BY `student_id`,`exams`.`course_id`;
 
 
